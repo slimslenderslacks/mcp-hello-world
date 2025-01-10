@@ -1,0 +1,35 @@
+[project]
+name = "mcp-hello-world"
+version = "0.1.0"
+description = "A Model Context Protocol server a hello world tool"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Docker Inc." }]
+maintainers = [{ name = "Jim Clark", email = "jim.clark@docker.com" }]
+keywords = [ "mcp", "docker"]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = [
+    "markdownify>=0.13.1",
+    "mcp>=1.0.0",
+    "protego>=0.3.1",
+    "pydantic>=2.0.0",
+    "readabilipy>=0.2.0",
+    "requests>=2.32.3",
+]
+
+[project.scripts]
+mcp-hello-world = "mcp_hello_world:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = ["pyright>=1.1.389", "ruff>=0.7.3"]
