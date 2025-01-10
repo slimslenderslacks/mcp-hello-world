@@ -1,6 +1,4 @@
-# Hello World MCP Server
-
-Simple MCP server for practicing MCP server packaging.
+# Hello World MCP Server Simple MCP server for practicing MCP server packaging.
 
 ### Available Tools
 
@@ -40,7 +38,7 @@ Add to your Claude settings:
 You can use the MCP inspector to debug the server. For uvx installations:
 
 ```
-docker run --rm mcp/inspector
+docker run --rm -p 5173:5173 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock --pull=always mcp/inspector
 ```
 
 ## License
