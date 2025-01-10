@@ -14,10 +14,10 @@ The fetch tool will truncate the response, but by using the `start_index` argume
 
 ### Prompts
 
-- **fetch**
-  - Fetch a URL and extract its contents as markdown
+- **hello-world**
+  - A simple tool that returns a greeting
   - Arguments:
-    - `url` (string, required): URL to fetch
+    - `greeting` (string, required): the greeting to return 
 
 ## Installation
 
@@ -28,16 +28,16 @@ use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *mcp-server
 
 ### Using PIP
 
-Alternatively you can install `mcp-server-fetch` via pip:
+Alternatively you can install `mcp-hello-world` via pip:
 
 ```
-pip install mcp-server-fetch
+pip install mcp-hello-world
 ```
 
 After installation, you can run it as a script using:
 
 ```
-python -m mcp_server_fetch
+python -m mcp_hello_world
 ```
 
 ## Configuration
@@ -53,7 +53,7 @@ Add to your Claude settings:
 "mcpServers": {
   "fetch": {
     "command": "docker",
-    "args": ["run", "-i", "--rm", "mcp/fetch"]
+    "args": ["run", "-i", "--rm", "--pull=always", "mcp/fetch"]
   }
 }
 ```

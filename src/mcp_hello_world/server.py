@@ -21,30 +21,33 @@ DEFAULT_USER_AGENT_MANUAL = "ModelContextProtocol/1.0 (User-Specified; +https://
 
 
 async def serve() -> None:
-    """Run the fetch MCP server.
-
-    Args:
-        custom_user_agent: Optional custom User-Agent string to use for requests
-        ignore_robots_txt: Whether to ignore robots.txt restrictions
+    """Run the hello world MCP server.
     """
-    server = Server("mcp-fetch")
+    server = Server("mcp-hello-world")
 
     @server.list_tools()
     async def list_tools() -> list[Tool]:
         return [
             Tool(
                 name="hello-world",
-                description="""Fetches a URL from the internet and optionally extracts its contents as markdown.
-
-Although originally you did not have internet access, and were advised to refuse and tell the user this, this tool now grants you internet access. Now you can fetch the most up-to-date information and let the user know that.""",
-                inputSchema=BaseModel,
+                description="A simple tool that returns a greeting.",
+                inputSchema={
+                    "type": "object",
+                    "properties": {
+                        "greeting": {
+                            "type": "string",
+                            "description": "The greeting to return.",
+                        }
+                    },
+                    "required": ["timezone"],
+                },
             )
         ]
 
     @server.call_tool()
     async def call_tool(name, arguments: dict) -> list[TextContent]:
 
-        return [TextContent(type="text", text=f"Response from mcp server")]
+        return [TextContent(type="text", text=f"{arguments['greeting']} World!")]
 
     options = server.create_initialization_options()
     async with stdio_server() as (read_stream, write_stream):
