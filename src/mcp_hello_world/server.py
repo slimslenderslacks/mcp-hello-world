@@ -1,20 +1,9 @@
-from typing import Annotated, Tuple
-from urllib.parse import urlparse, urlunparse
-
-from mcp.shared.exceptions import McpError
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import (
-    GetPromptResult,
-    Prompt,
-    PromptArgument,
-    PromptMessage,
     TextContent,
     Tool,
-    INVALID_PARAMS,
-    INTERNAL_ERROR,
 )
-from pydantic import BaseModel, Field, AnyUrl
 
 DEFAULT_USER_AGENT_AUTONOMOUS = "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
 DEFAULT_USER_AGENT_MANUAL = "ModelContextProtocol/1.0 (User-Specified; +https://github.com/modelcontextprotocol/servers)"
@@ -39,7 +28,7 @@ async def serve() -> None:
                             "description": "The greeting to return.",
                         }
                     },
-                    "required": ["timezone"],
+                    "required": ["greeting"],
                 },
             )
         ]
